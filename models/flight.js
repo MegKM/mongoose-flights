@@ -12,12 +12,18 @@ const destinationSchema = new Schema({
   timestamps: true
 });
 
+const ticketSchema = new Schema ({
+  seat: {type: String, match: /[A-F][1-9]\d?/},
+  price: {type: Number, default: 200}
+});
+
 const flightSchema = new Schema({
   airline: String,
   airport: {type:String, enum:["AUS", "DFW", "DEN", "LAX", "SAN"], defult:"DEN"},
   flightNo: Number,
   departs: {type:Date, default:"1/1/1970"},
-  destinations: [destinationSchema]
+  destinations: [destinationSchema],
+  tickets: [ticketSchema]
 }, {
   timestamps: true
 });

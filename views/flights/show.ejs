@@ -69,6 +69,38 @@
         <p>No destinations have been entered.</p>
     <% } %>
 
+    <hr>
+
+    <h2>Buy a Ticket</h2>
+    <form id="ticket-form" method="POST"
+        action="/flights/<%= flight._id%>/tickets">
+        <input name="seat" required pattern="[A-F][1-9]\d?">
+        <button type="submit">Buy Ticket</button>
+    </form>
+
+    <hr>
+
+    <% if (flight.tickets.length) { %>
+        <h2>Tcikets</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Seat:</th>
+                    <th>Price:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% flight.tickets.forEach(function(t) { %>
+                    <tr>
+                        <td><%= t.seat %></td>
+                        <td><%= t.price %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No tickets have been purchased</p>
+    <% } %>
 
 </section>
 </main>
